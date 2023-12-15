@@ -10,7 +10,6 @@ public class DeleteTests extends BaseTest{
     @Test
 
     public void deleteProject(){
-
         Response response = given()
                 .baseUri(prop.getProperty("baseUri"))
                 .header("Accept","*/*")

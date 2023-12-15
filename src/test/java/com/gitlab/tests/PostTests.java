@@ -1,8 +1,10 @@
 package com.gitlab.tests;
 
-import com.github.javafaker.Faker;
+import com.gitlab.constants.FrameworkContsants;
 import com.gitlab.pojo.Project;
+import com.gitlab.utils.ApiUtils;
 import com.gitlab.utils.RandomUtils;
+import io.restassured.module.jsv.JsonSchemaValidator;
 import io.restassured.response.Response;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -17,7 +19,8 @@ public class PostTests extends BaseTest{
 
     public void createProject(){
 
-        Project postdata = Project.builder().setName(RandomUtils.getName())
+        Project postData = Project.builder()
+                .setName(RandomUtils.getName())
                 .setDescription(RandomUtils.getDiscription())
                 .setPath(RandomUtils.getPaths())
                 .setInitialize_with_readme(RandomUtils.getReadme()).build();
@@ -27,13 +30,16 @@ public class PostTests extends BaseTest{
                 .header("Accept","*/*")
                 .header("Authorization","Bearer "+AuthenticationToken.accessToken)
                 .header("Content-Type","application/json")
-                .body(postdata)
+                .body(postData)
                 .when()
                 .post(prop.getProperty("post-path"));
 
         projectId = response.jsonPath().getString("id");
         System.out.println("The project id is:"+projectId);
         System.out.println(response.asPrettyString());
+        response.then().body(JsonSchemaValidator.matchesJsonSchemaInClasspath("schema.json"));
         Assert.assertEquals(response.getStatusCode(),201,"Status Code is:");
+        ApiUtils.storeValueAsJsonFile(FrameworkContsants.RESPONSE_JSON_FOLDER_PATH,response);
+
     }
 }

@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="RestAPISuite">
-<!--    <listeners>-->
-<!--        <listener class-name="com.reqres.utils.Listeners"></listener>-->
-<!--    </listeners>-->
     <test thread-count="5" name="RestAPISuite">
         <classes>
             <class name="com.gitlab.tests.AuthenticationToken"/>
@@ -12,5 +9,5 @@
             <class name="com.gitlab.tests.PutTests"/>
             <class name="com.gitlab.tests.DeleteTests"/>
         </classes>
-    </test> <!-- ReqresRestAPISuite -->
+    </test> 
 </suite>

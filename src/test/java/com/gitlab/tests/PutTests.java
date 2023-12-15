@@ -27,6 +27,7 @@ public class PutTests extends BaseTest{
                 .when()
                 .put(prop.getProperty("update-path"));
 
+        System.out.println("Name has been updated:"+response.jsonPath().getString("name"));
         System.out.println("The updated data is: "+response.getBody().asPrettyString());
         Assert.assertEquals(response.getStatusCode(),200,"Status code is:");
 

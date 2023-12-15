@@ -1,7 +1,7 @@
 package com.gitlab.utils;
 import com.github.javafaker.Faker;
 
-public class FakerUtils {
+public final class FakerUtils {
 
     private FakerUtils(){}
 
@@ -12,11 +12,11 @@ public class FakerUtils {
     }
 
     static String getDisc(){
-        return faker.funnyName().toString();
+        return faker.food().dish();
     }
 
     static String getPath(){
-        return faker.crypto().toString();
+        return faker.name().toString();
     }
 
     static Boolean getInitializeWithReadme(){

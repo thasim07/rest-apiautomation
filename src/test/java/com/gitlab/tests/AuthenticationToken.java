@@ -2,7 +2,6 @@ package com.gitlab.tests;
 
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
-import org.assertj.core.api.Assertions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -14,6 +13,7 @@ public class AuthenticationToken extends BaseTest{
 
     @Test
     public void getAccessToken(){
+
         Response authorization = given()
                 .baseUri(prop.getProperty("baseUri"))
                 .queryParam("client_id", prop.getProperty("clientId"))
